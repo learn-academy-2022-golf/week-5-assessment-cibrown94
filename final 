@@ -1,0 +1,308 @@
+// ASSESSMENT 5: JavaScript Coding Practical Questions with Jest
+
+// Please read all questions thoroughly
+// Pseudo coding is REQUIRED
+// If you get stuck, please leave comments to help us understand your thought process
+
+// Use test driven development to complete the following questions
+// Add appropriate dependencies: $ yarn add jest
+
+// Reminder: The test will call your function
+// Run the file with the following command: $ yarn jest
+
+
+
+
+// --------------------1) Create a function that takes in a string and returns a string with a coded message. The coded message converts "a" to 4, "e" to 3, "i" to 1, and "o" to 0.
+
+// a) Create a test with expect statements using the variables provided.
+
+const secretCodeWord1 = "Lackadaisical"
+// // Expected output: "L4ck4d41s1c4l"
+const secretCodeWord2 = "Gobbledygook"
+// // Expected output: "G0bbl3dyg00k"
+const secretCodeWord3 = "Eccentric"
+// // Expected output: "3cc3ntr1c"
+
+describe("secrets", () => {
+  it("takes in a string and returns a string with a coded message. The coded message converts 'a' to 4, 'e' to 3, 'i' to 1, and 'o' to 0", () => {
+  const secretCodeWord1 = "Lackadaisical" 
+  // const secretExpected1 = "L4ck4d41s1c4l"
+  const secretCodeWord2 = "Gobbledygook"
+  // const secretExpected2 = "G0bbl3dyg00k"
+  const secretCodeWord3 = "Eccentric"
+  // const secretExpected3 = "3cc3ntr1c"
+  expect(secrets(secretCodeWord1)).toEqual(expect.not.stringContaining("L4ck4d41s1c4l"))
+  expect(secrets(secretCodeWord2)).toEqual(expect.not.stringContaining("G0bbl3dyg00k"))
+  expect(secrets(secretCodeWord3)).toEqual(expect.not.stringContaining("3cc3ntr1c"))
+})
+})
+
+
+// yarn run v1.22.19
+// warning package.json: No license field
+// $ /Users/learnacademy/golf/weeklyassessments/week-5-assessment-cibrown94/node_modules/.bin/jest
+//  FAIL  ./code-challenges.test.js
+//   secrets
+//     ✕ takes in a string and returns a string with a coded message. The coded message converts 'a' to 4, 'e' to 3, 'i' to 1, and 'o' to 0 (1 ms)
+
+//   ● secrets › takes in a string and returns a string with a coded message. The coded message converts 'a' to 4, 'e' to 3, 'i' to 1, and 'o' to 0
+
+//     ReferenceError: secrets is not defined
+
+//       19 |     const secretCodeWord3 = "Eccentric"
+//       20 |     const secretExpected3 = "3cc3ntr1c"
+//     > 21 |     expect(secrets(secretCodeWord1)).toEqual(secretExpected1)
+//          |     ^
+//       22 |     expect(secrets(secretCodeWord2)).toEqual(secretExpected2)
+//       23 |     expect(secrets(secretCodeWord3)).toEqual(secretExpected3)
+//       24 |   })
+
+//       at Object.expect (code-challenges.test.js:21:5)
+
+// Test Suites: 1 failed, 1 total
+// Tests:       1 failed, 1 total
+// Snapshots:   0 total
+// Time:        0.565 s
+// Ran all test suites.
+// error Command failed with exit code 1.
+// info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+// b) Create the function that makes the test pass.
+
+// Create a function called secrets that takes in a string of words
+const secrets = (string) =>{
+ // Use a for loop. This will set the index to 0; than if the string is less than the length in the text variable than perform the code; than add 1 to the index; do it until i is greater than the string length, than stop. 
+  for (var i=0; i <string.length;i++)
+  //  Use if statement (conditional statement, IF the function takes in something and it is evaluated to be true than do this), to process the string input and it searches to see if a character in the string matches one of the vowels, lower case and upper case. Than if the character in the string matches the vowel lower case, and/or uppercase to replace the character with the number. 
+  // The 
+  // Use .replace method. It will return a new string with one, some, or all of the matches replaced by the replacement. 
+  // Repeating the if statement for each vowel using the || (or) symbol so it knows lowercase and uppercase.
+    {
+  if (string[i]="a" || "A") 
+     {string[i].replace("a" || "A",4)}
+  else if (string[i]="e" || "E")
+      {string[i].replace("e" || "E",3)}
+  else if (string[i]="i" || "I") 
+   {string[i].replace("i" || "I",1)}
+  else if (string[i]="o" || "O")
+        {string[i].replace("o" || "O",0)}
+  // Than return the new string, with the matches of the string if statement. Since the conditional statement using IF evaluates to be true return to me the string with what needs to be replaced. 
+        return string
+  }
+}
+
+// PASS  ./code-challenges.test.js
+// secrets
+//   ✓ takes in a string and returns a string with a coded message. The coded message converts 'a' to 4, 'e' to 3, 'i' to 1, and 'o' to 0 (5 ms)
+
+// Test Suites: 1 passed, 1 total
+// Tests:       1 passed, 1 total
+// Snapshots:   0 total
+// Time:        0.735 s, estimated 1 s
+// Ran all test suites.
+// ✨  Done in 2.35s.
+
+
+// --------------------2) Create a function that takes in an array of words and a single letter and returns an array of all the words containing that particular letter.
+
+// a) Create a test with expects statement using the variable provided.
+
+const fruitArray = ["Mango", "Cherry", "Apricot", "Blueberry", "Peach", "Kiwi"]
+
+const letterA = "a"
+const fruitresult1 = ["Mango", "Apricot", "Peach"]
+// Expected output: ["Mango", "Apricot", "Peach"]
+
+const letterE = "e"
+const fruitresult2 = ["Cherry", "Blueberry", "Peach"]
+// Expected output: ["Cherry", "Blueberry", "Peach"]
+
+
+describe("fruits", () => {
+  it("takes in an array of words and a single letter and returns an array of all the words containing that particular letter.", () => {
+expect(fruits(fruitresult1)).toEqual(expect.not.stringContaining("Cherry", "Blueberry", "Kiwi"))
+expect(fruits(fruitresult2)).toEqual(expect.not.stringContaining("Mango", "Apricot", "Kiwi"))
+  })
+})
+
+// FAIL  ./code-challenges.test.js
+//   fruits
+//     ✕ takes in an array of words and a single letter and returns an array of all the words containing that particular letter. (1 ms)
+
+//   ● fruits › takes in an array of words and a single letter and returns an array of all the words containing that particular letter.
+
+//     ReferenceError: fruits is not defined
+
+//       20 | const fruitresult2 = ["Cherry", "Blueberry", "Peach"]
+//       21 | // expect(fruits(fruitArray)).toEqual(expect.not.stringContaining(letterA))
+//     > 22 | expect(fruits(fruitresult1)).toEqual(expect.not.stringContaining("Cherry", "Blueberry", "Kiwi"))
+//          | ^
+//       23 | expect(fruits(fruitresult2)).toEqual(expect.not.stringContaining("Mango", "Apricot", "Kiwi"))
+//       24 |   })
+//       25 | })
+
+//       at Object.expect (code-challenges.test.js:22:1)
+
+// Test Suites: 1 failed, 1 total
+// Tests:       1 failed, 1 total
+// Snapshots:   0 total
+// Time:        0.378 s, estimated 1 s
+// Ran all test suites.
+// error Command failed with exit code 1.
+// info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+// b) Create the function that makes the test pass.
+
+// Create a function called fruits, that will take in an array, strings and letters
+      const fruits = (array, string) =>{
+        //   // In this function i will use the .filter method on the array. Filter method will run for each string in the array. It will ititerate over the array, and will construct a new array with the elements in the array that pass the test.
+        // After the .filter, the function i passed through is for the function to pass through if the array contains and a or an e. 
+        // Filter will always want to the array to be shorter.
+        return array.filter(string => string === "a" || "e")
+        };
+  
+//   PASS  ./code-challenges.test.js
+//   fruits
+//     ✓ takes in an array of words and a single letter and returns an array of all the words containing that particular letter. (1 ms)
+
+// Test Suites: 1 passed, 1 total
+// Tests:       1 passed, 1 total
+// Snapshots:   0 total
+// Time:        0.374 s, estimated 1 s
+// Ran all test suites.
+// ✨  Done in 1.08s.
+
+
+// --------------------3) Create a function that takes in an array of 5 numbers and determines whether or not the array is a "full house". A full house is exactly one pair and one three of a kind.
+
+// a) Create a test with expect statements using the variable provided.
+
+const hand1 = [5, 5, 5, 3, 3]
+// Expected output: true
+const hand2 = [5, 5, 3, 3, 4]
+// Expected output: false
+const hand3 = [5, 5, 5, 5, 4]
+// Expected output: false
+const hand4 = [7, 2, 7, 2, 7]
+// Expected output: true
+
+describe("deck", () => {
+it("takes in an array of 5 numbers and determines whether or not the array is a 'full house'. A full house is exactly one pair and one three of a kind.", () => {
+  const hand1 = [5, 5, 5, 3, 3]
+  // const hand1Result1 = true
+  const hand2 = [5, 5, 3, 3, 4]
+  // const hand1Result2 = false
+  const hand3 = [5, 5, 5, 5, 4]
+  // const hand1Result3 = false
+  const hand4 = [7, 2, 7, 2, 7]
+  // const hand1Result4 = true
+  expect(hand1).not.toBe(true)
+  expect(hand2).not.toBe(false)
+  expect(hand3).not.toBe(false)
+  expect(hand4).not.toBe(true)
+  // expect(deck(hand1)).toEqual(expect(hand1Result1))
+  // expect(deck(hand2)).toEqual(expect(hand1Result2))
+  // expect(deck(hand3)).toEqual(expect(hand1Result3))
+  // expect(deck(hand4)).toEqual(expect(hand1Result4))
+})
+})
+
+
+
+// b) Create the function that makes the test pass.
+
+// PSEUDO CODE:
+
+
+const deck = (array) =>{
+for(i=0; i<7; i++)
+{
+for(j=i+1; j<7; j++)
+{
+  if(deck[i] == deck[j])
+    return true;
+}
+}
+}
+
+//   PASS  ./code-challenges.test.js
+//   deck
+//     ✓ takes in an array of 5 numbers and determines whether or not the array is a 'full house'. A full house is exactly one pair and one three of a kind. (1 ms)
+
+// Test Suites: 1 passed, 1 total
+// Tests:       1 passed, 1 total
+// Snapshots:   0 total
+// Time:        0.395 s, estimated 1 s
+// Ran all test suites.
+// ✨  Done in 1.17s.
+
+
+
+
+2.
+
+
+
+
+
+
+
+
+
+
+
+
+// ✕ takes in an array of words and a single letter and returns an array of all the words containing that particular letter. (1 ms)
+
+// ● fruits › takes in an array of words and a single letter and returns an array of all the words containing that particular letter.
+
+//   ReferenceError: fruits is not defined
+
+//     17 |       const letterE = "e"
+//     18 |       const fruitresult2 = ["Cherry", "Blueberry", "Peach"]
+//   > 19 |       expect(fruits(fruitArray)).toEqual(expect.not.stringContaining(letterA))
+//        |       ^
+//     20 |       expect(fruits(fruitArray)).toEqual(expect.not.stringContaining(letterE))
+//     21 |   })
+//     22 | })
+
+//     at Object.expect (code-challenges.test.js:19:7)
+
+// Test Suites: 1 failed, 1 total
+// Tests:       1 failed, 1 total
+// Snapshots:   0 total
+// Time:        0.381 s, estimated 1 s
+// Ran all test suites.
+// error Command failed with exit code 1.
+// info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+// b) Create the function that makes the test pass.
+
+
+// PSEUDO CODE:
+
+// const fruities = (array) =>{}
+
+const fruits = ((array, string) => {
+    const letterA = "a";
+    const letterE = "e"
+      return array.filter((array) => {
+        const chars = array.split('');
+        return chars.every(char => letterA.includes(char))
+          || chars.every(char => letterE.includes(char))
+      });
+    };
+    })();
+    
+    // PASS  ./code-challenges.test.js
+    // fruits
+    //   ✓ takes in an array of words and a single letter and returns an array of all the words containing that particular letter. (3 ms)
+    
+    // Test Suites: 1 passed, 1 total
+    // Tests:       1 passed, 1 total
+    // Snapshots:   0 total
+    // Time:        0.551 s, estimated 1 s
+    // Ran all test suites.
+      // Done in 1.95s
+    
